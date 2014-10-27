@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   has_many :predictions
-  has_many :comments, through :predictions
+  has_many :comments, through: :predictions
 
   TEMP_EMAIL_PREFIX = 'address@example.com'
   TEMP_EMAIL_REGEX = /\Aaddress@example.com/
