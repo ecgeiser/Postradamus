@@ -10,9 +10,14 @@
   <p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p>
 
-  <nav class="login">
-    <%= render partial: "finish_signup", object: @user %>
-  </nav>
+  <div class="login">
+    <% if !user_signed_in? %>
+     <%= link_to "Sign in", new_user_session_path, class: "button"%>
+     <%= link_to "Register", new_user_registration_path, class: "button" %>
+     <% else %>
+    <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "button" %>
+    <% end %>
+  </div>
 
 <%= yield %>
 
