@@ -38,14 +38,14 @@ Rails.application.configure do
   # Email
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
-  config.action_mailer.default_url_options = { host: 'localhost' }
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
   config.action_mailer.smtp_settings = {
     address: 'localhost', 
-    port: '25',
+    port: 3000,
     enable_starttls_auto: true,
-    user_name: 'someuser',
-    password: 'somepass',
+    user_name: ENV["email_username"],
+    password: ENV["email_pass"],
     authentication: :plain,
-    domain: 'somedomain.com'
+    domain: 'gmail.com'
   }
 end
