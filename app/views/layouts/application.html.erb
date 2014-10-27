@@ -10,6 +10,10 @@
   <p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p>
 
+  <nav class="login">
+    <%= render partial: "finish_signup", object: @user %>
+  </nav>
+
 <%= yield %>
 
 </body>
