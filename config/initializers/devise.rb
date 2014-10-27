@@ -2,7 +2,7 @@
 # Many of these configuration options can be set straight in your model.
 Devise.setup do |config|
 
-  # config.omniauth :facebook, "KEY", "SECRET"
+  config.omniauth :facebook, ENV["facebook_key"], ENV["facebook_secret"]
   config.omniauth :twitter, ENV["twitter_key"], ENV["twitter_secret"]
 
   # The secret key used by Devise. Devise uses this key to generate
