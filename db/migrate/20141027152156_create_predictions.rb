@@ -5,7 +5,7 @@ class CreatePredictions < ActiveRecord::Migration
       t.text :tags, array: true, default: []
       t.integer :upvotes
       t.integer :downvotes
-      t.boolean :came_true
+      t.boolean :came_true, default: false
 
       t.timestamps
     end

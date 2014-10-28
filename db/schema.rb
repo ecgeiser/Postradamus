@@ -38,10 +38,10 @@ ActiveRecord::Schema.define(version: 20141027152205) do
 
   create_table "predictions", force: true do |t|
     t.text     "body"
-    t.text     "tags",       default: [], array: true
+    t.text     "tags",       default: [],    array: true
     t.integer  "upvotes"
     t.integer  "downvotes"
-    t.boolean  "came_true"
+    t.boolean  "came_true",  default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
