@@ -12,6 +12,14 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
+//= require angular
+//= require angular-rails-templates
 //= require bootstrap-sprockets
-//= require_tree .
+//= require postradamus/app
+//= require_tree ./postradamus/templates
+//= require_tree ./postradamus/modules
+//= require_tree ./postradamus/filters
+//= require_tree ./postradamus/directives
+//= require_tree ./postradamus/models
+//= require_tree ./postradamus/services
+//= require_tree ./postradamus/controllers
