@@ -5,3 +5,6 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+
+Prediction.create([{body: "There will be no jobs for humans."}, {body: "Everyone will take work sabbaticals."}, {body: "Everyone from WDI2 will get an awesome job."}, {body: "Sal will post a meme to hipchat."}, {body: "Mikael will initiate a single clap."}])
