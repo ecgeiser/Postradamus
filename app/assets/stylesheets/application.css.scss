@@ -20,5 +20,28 @@
 body {
   background-image: url(/assets/footer_lodyas.png);
   color: #5AFF38;
-  font-family: 'Ubuntu Mono' ;
+  font-family: 'Ubuntu Mono';
+  text-align: center;
+}
+
+.prediction-list {
+  margin: 0 auto;
+  text-align: center;
+  width: 75%;
+}
+
+.prediction {
+  border: 1px solid #5AFF38;
+  background-image: url(/assets/navy_blue.png);
+  margin-bottom: 1.5em;
+}
+
+.new {
+  width: 75%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+blockquote {
+  border-left: 0;
 }
