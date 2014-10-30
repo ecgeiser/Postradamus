@@ -15,7 +15,7 @@ class PredictionsController < ApplicationController
   end
 
   def create
-    @prediction = Prediction.new(prediction_params)
+    @prediction = Prediction.new(prediction_params.merge(user: current_user))
     render json: @prediction.to_json, status: 200 if @prediction.save
   end
 

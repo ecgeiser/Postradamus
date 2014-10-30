@@ -40,8 +40,27 @@ body {
   width: 75%;
   margin: 0 auto;
   text-align: center;
+  margin-bottom: 1.5em;
 }
 
 blockquote {
   border-left: 0;
+}
+
+textarea {
+  outline: none;
+  border-radius: 5px;
+  width: 45%;
+  background: grey;
+  opacity: .8;
+}
+
+input[type="submit"] {
+  border: none;
+  height: 44px;
+  border-radius: 5px;
+  outline: none;
+  padding: 0px 10px;
+  background-color: #5E84CC;
+  margin-bottom: 10px;
 }

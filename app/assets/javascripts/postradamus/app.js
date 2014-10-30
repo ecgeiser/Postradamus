@@ -33,7 +33,7 @@
       $scope.addPrediction = function(prediction) {
         $http.post('/predictions.json', {body: prediction.body, upvotes: 0, downvotes: 0})
           .success(function(data) {
-            $scope.predictions = data;
+            $scope.predictions.push(data);
           })
           .error(function(){
             alert("something went wrong with creating a new prediction!");
@@ -44,7 +44,6 @@
         votes += 1
         $http.put('/predictions/' + predictionId + '.json', {upvotes: votes})
           .success(function(data) {
-            console.log(data);
           })
           .error(function(){
             alert("something went wrong with upvoting!");
@@ -55,11 +54,39 @@
         votes += 1
         $http.put('/predictions/' + predictionId + '.json', {downvotes: votes})
           .success(function(data) {
-            console.log(data);
           })
           .error(function(){
             alert("something went wrong with downvoting!");
         });
+      };
+
+      $scope.deletePrediction = function(prediction) {
+        $http.delete('/predictions/' + prediction.id + '.json')
+        .success(function(data){
+          var index = $scope.predictions.indexOf(prediction)
+          $scope.predictions.splice(index, 1);
+        })
+        .error(function(){
+          alert("something went wrong with deleting this prediction!");
+        })
+      };
+
+      $scope.getCurrentUser = function() {
+        return $http.get('/users/current_user.json')
+        .success(function(data){
+          $scope.currentUser = data.email;
+        })
+        .error(function(){
+          alert("something went wrong with getting the current user!");
+        })
+      };
+
+      $scope.getCurrentUser();
+
+      $scope.checkOwner = function(prediction) {
+        if ($scope.currentUser == prediction.user_email) {
+          return true
+        } else {return false};
       };
 
     }
@@ -77,7 +104,6 @@
   })
 
 })();
-
 
 // = require_tree ./postradamus/templates
 // = require_tree ./postradamus/modules
