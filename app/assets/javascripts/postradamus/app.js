@@ -34,6 +34,7 @@
         $http.post('/predictions.json', {body: prediction.body, upvotes: 0, downvotes: 0})
           .success(function(data) {
             $scope.predictions.push(data);
+            $scope.prediction = {};
           })
           .error(function(){
             alert("something went wrong with creating a new prediction!");

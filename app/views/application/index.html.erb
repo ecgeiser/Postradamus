@@ -2,12 +2,20 @@
 
 <div ng-controller="PredictionsCtrl as predictions">
 
+<section ng-init="tab = 1">
+    <ul class="nav nav-pills">
+      <li><a href ng-click="tab = 1">Popular Predictions</a></li>
+      <li><a href ng-click="tab = 2">Recent Predictions</a></li>
+      <li><a href ng-click="tab = 3">My Predictions</a></li>
+    </ul>
+</section>
+
 <form novalidate="" name="predictionForm" ng-submit="addPrediction(prediction)" role="form">
   <textarea ng-model="prediction.body"></textarea>
   <br><input type="submit" value="Submit" />
 </form>
 
-<div class="prediction-list">
+<div class="prediction-list" ng-show="tab === 1">
 
   <div class="prediction" ng-show"prediction.body">
     <blockquote>
@@ -15,12 +23,42 @@
     </blockquote>
   </div>
 
-
   <div class="prediction" ng-repeat="prediction in predictions | orderBy: '-upvotes'">
     <h3>{{prediction.body}}</h3>
     <p>{{prediction.user_email}}</p>
     <p>Agree: {{prediction.upvotes}} <a href="" ng-click="incrementUpVote(prediction.id, prediction.upvotes); prediction.upvotes = prediction.upvotes + 1">&#9650;</a> | Disagree: {{prediction.downvotes}} <a href="" ng-click="incrementDownVote(prediction.id, prediction.downvotes); prediction.downvotes = prediction.downvotes + 1">&#9660;</a></p>
     <p ng-show="checkOwner(prediction)"><a href="" ng-click="deletePrediction(prediction)">DELETE</a></p>
+  </div>
+
+</div>
+
+<div class="prediction-list" ng-show="tab === 2">
+    <div class="prediction" ng-show"prediction.body">
+    <blockquote>
+      <h3>{{prediction.body}}</h3>
+    </blockquote>
+  </div>
+
+  <div class="prediction" ng-repeat="prediction in predictions | orderBy: '-created_at' | limitTo: 10">
+    <h3>{{prediction.body}}</h3>
+    <p>{{prediction.user_email}}</p>
+    <p>Agree: {{prediction.upvotes}} <a href="" ng-click="incrementUpVote(prediction.id, prediction.upvotes); prediction.upvotes = prediction.upvotes + 1">&#9650;</a> | Disagree: {{prediction.downvotes}} <a href="" ng-click="incrementDownVote(prediction.id, prediction.downvotes); prediction.downvotes = prediction.downvotes + 1">&#9660;</a></p>
+    <p ng-show="checkOwner(prediction)"><a href="" ng-click="deletePrediction(prediction)">DELETE</a></p>
+  </div>
+</div>
+
+<div class="prediction-list" ng-show="tab === 3">
+    <div class="prediction" ng-show"prediction.body">
+    <blockquote>
+      <h3>{{prediction.body}}</h3>
+    </blockquote>
+  </div>
+
+  <div class="prediction" ng-repeat="prediction in predictions | orderBy: '-created_at'" ng-show="checkOwner(prediction)">
+    <h3>{{prediction.body}}</h3>
+    <p>{{prediction.user_email}}</p>
+    <p>Agree: {{prediction.upvotes}} <a href="" ng-click="incrementUpVote(prediction.id, prediction.upvotes); prediction.upvotes = prediction.upvotes + 1">&#9650;</a> | Disagree: {{prediction.downvotes}} <a href="" ng-click="incrementDownVote(prediction.id, prediction.downvotes); prediction.downvotes = prediction.downvotes + 1">&#9660;</a></p>
+    <p><a href="" ng-click="deletePrediction(prediction)">DELETE</a></p>
   </div>
 </div>
 
