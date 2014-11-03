@@ -10,8 +10,12 @@ class PredictionsController < ApplicationController
     render json: @prediction.to_json, status: 200
   end
 
+  def new
+    @prediction = Prediction.new
+  end
+
   def create
-    @prediction = Prediction.new(prediction_params)
+    @prediction = Prediction.new(prediction_params.merge(user: current_user))
     render json: @prediction.to_json, status: 200 if @prediction.save
   end
 
@@ -29,7 +33,7 @@ class PredictionsController < ApplicationController
     @prediction = Prediction.find(params[:id])
   end
   
-  def grumble_params
-    params.require(:prediction).permit(:body,:tags)
+  def prediction_params
+    params.require(:prediction).permit(:body,:tags,:upvotes,:downvotes)
   end
 end

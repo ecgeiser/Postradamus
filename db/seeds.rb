@@ -6,5 +6,12 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+Prediction.delete_all
 
-Prediction.create([{body: "There will be no jobs for humans."}, {body: "Everyone will take work sabbaticals."}, {body: "Everyone from WDI2 will get an awesome job."}, {body: "Sal will post a meme to hipchat."}, {body: "Mikael will initiate a single clap."}])
+Prediction.create([
+  {body: "There will be no jobs for humans.", upvotes: 1, downvotes: 17},
+  {body: "Everyone will take work sabbaticals.", upvotes: 5, downvotes: 5},
+  {body: "Everyone from WDI2 will get an awesome job.", upvotes: 152, downvotes: 0},
+  {body: "Sal will post a meme to hipchat.", upvotes: 18, downvotes: 5},
+  {body: "Mikael will initiate a single clap.", upvotes: 1, downvotes: 0}
+])

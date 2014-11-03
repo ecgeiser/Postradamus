@@ -8,16 +8,12 @@
     }
   ]);
 
-  // app.controller('PredictionsCtrl', function(){
-  //   this.predictionsValue = "Hello angular and rails"
-  // });
-
 })();
 
 (function(){
-  var predictionsApp = angular.module('predictionsApp', []);
+  var app = angular.module('predictionsApp', []);
 
-  predictionsApp.controller("PredictionsCtrl", function PredictionsController($scope, PredictionsFactory) {
+  app.controller("PredictionsCtrl", function PredictionsController($http, $scope, PredictionsFactory) {
 
       $scope.PredictionsFactory = PredictionsFactory;
       $scope.predictions = PredictionsFactory.predictions;
@@ -28,15 +24,76 @@
           $scope.predictions = data;
         })
         .error(function(){
-          alert("something went wrong!")
+          alert("something went wrong with fetching the predictions!");
         })
       };
 
       $scope.getPredictions();
+
+      $scope.addPrediction = function(prediction) {
+        $http.post('/predictions.json', {body: prediction.body, upvotes: 0, downvotes: 0})
+          .success(function(data) {
+            $scope.predictions.push(data);
+            $scope.prediction = {};
+          })
+          .error(function(){
+            alert("something went wrong with creating a new prediction!");
+        });
+      };
+
+      $scope.incrementUpVote = function(predictionId, votes) {
+        votes += 1
+        $http.put('/predictions/' + predictionId + '.json', {upvotes: votes})
+          .success(function(data) {
+          })
+          .error(function(){
+            alert("something went wrong with upvoting!");
+        });
+      };
+
+      $scope.incrementDownVote = function(predictionId, votes) {
+        votes += 1
+        $http.put('/predictions/' + predictionId + '.json', {downvotes: votes})
+          .success(function(data) {
+          })
+          .error(function(){
+            alert("something went wrong with downvoting!");
+        });
+      };
+
+      $scope.deletePrediction = function(prediction) {
+        $http.delete('/predictions/' + prediction.id + '.json')
+        .success(function(data){
+          var index = $scope.predictions.indexOf(prediction)
+          $scope.predictions.splice(index, 1);
+        })
+        .error(function(){
+          alert("something went wrong with deleting this prediction!");
+        })
+      };
+
+      $scope.getCurrentUser = function() {
+        return $http.get('/users/current_user.json')
+        .success(function(data){
+          $scope.currentUser = data.email;
+        })
+        .error(function(){
+          alert("something went wrong with getting the current user!");
+        })
+      };
+
+      $scope.getCurrentUser();
+
+      $scope.checkOwner = function(prediction) {
+        if ($scope.currentUser == prediction.user_email) {
+          return true
+        } else {return false};
+      };
+
     }
   );
 
-  predictionsApp.factory('PredictionsFactory', function PredictionsFactory($http) {
+  app.factory('PredictionsFactory', function PredictionsFactory($http) {
     var factory = {};
 
     factory.predictions = [];
@@ -48,7 +105,6 @@
   })
 
 })();
-
 
 // = require_tree ./postradamus/templates
 // = require_tree ./postradamus/modules
