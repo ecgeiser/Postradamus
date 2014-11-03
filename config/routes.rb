@@ -3,8 +3,9 @@ Rails.application.routes.draw do
   root to: 'application#index'
   match '/users/:id/finish_signup' => 'users#finish_signup', via: [:get, :patch], :as => :finish_signup
 
-  resources :predictions
-  resources :comments
+  resources :predictions do 
+    resources :comments
+  end
   
   get 'users/current_user' => 'users#index'
 
