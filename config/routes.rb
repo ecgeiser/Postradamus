@@ -3,10 +3,9 @@ Rails.application.routes.draw do
   root to: 'application#index'
   match '/users/:id/finish_signup' => 'users#finish_signup', via: [:get, :patch], :as => :finish_signup
 
-  resources :predictions do
-    resources :comments
-  end
-
+  resources :predictions
+  resources :comments
+  
   get 'users/current_user' => 'users#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
