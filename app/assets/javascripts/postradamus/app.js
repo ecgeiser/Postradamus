@@ -11,7 +11,7 @@
 })();
 
 (function(){
-  var app = angular.module('predictionsApp', []);
+  var app = angular.module('predictionsApp', ['commentsApp']);
 
   app.controller("PredictionsCtrl", function PredictionsController($http, $scope, PredictionsFactory) {
 
@@ -98,6 +98,64 @@
 
     factory.predictions = [];
     factory.getPredictions = function () {
+      return $http.get('/predictions.json');
+    };
+
+    return factory;
+  })
+
+})();
+
+(function(){
+  var app = angular.module('commentsApp', []);
+
+  app.controller("CommentsCtrl", function CommentsController($http, $scope, CommentsFactory) {
+
+      $scope.CommentsFactory = CommentsFactory;
+      $scope.comments = CommentsFactory.comments;
+
+      $scope.getComments = function() {
+        CommentsFactory.getComments()
+        .success(function(data) {
+          $scope.comments = data;
+        })
+        .error(function(){
+          alert("something went wrong with fetching the comments!");
+        })
+      };
+
+      $scope.getComments();
+
+      // $scope.addComment = function(comment) {
+      //   $http.post('/predictions.json', {body: prediction.body, upvotes: 0, downvotes: 0})
+      //     .success(function(data) {
+      //       $scope.predictions.push(data);
+      //       $scope.prediction = {};
+      //     })
+      //     .error(function(){
+      //       alert("something went wrong with creating a new prediction!");
+      //   });
+      // };
+
+      // $scope.deletePrediction = function(prediction) {
+      //   $http.delete('/predictions/' + prediction.id + '.json')
+      //   .success(function(data){
+      //     var index = $scope.predictions.indexOf(prediction)
+      //     $scope.predictions.splice(index, 1);
+      //   })
+      //   .error(function(){
+      //     alert("something went wrong with deleting this prediction!");
+      //   })
+      // };
+
+    }
+  );
+
+  app.factory('CommentsFactory', function CommentsFactory($http) {
+    var factory = {};
+
+    factory.comments = [];
+    factory.getComments = function () {
       return $http.get('/predictions.json');
     };
 

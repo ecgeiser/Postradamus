@@ -28,6 +28,9 @@
     <p>{{prediction.user_email}}</p>
     <p>Agree: {{prediction.upvotes}} <a href="" ng-click="incrementUpVote(prediction.id, prediction.upvotes); prediction.upvotes = prediction.upvotes + 1">&#9650;</a> | Disagree: {{prediction.downvotes}} <a href="" ng-click="incrementDownVote(prediction.id, prediction.downvotes); prediction.downvotes = prediction.downvotes + 1">&#9660;</a></p>
     <p ng-show="checkOwner(prediction)"><a href="" ng-click="deletePrediction(prediction)">DELETE</a></p>
+    <p><a href="" ng-click="comment_tab = 1">VIEW COMMENTS</a></p>
+    <div class="comment-list" ng-show="comment_tab === 1">
+    </div>
   </div>
 
 </div>
@@ -44,6 +47,10 @@
     <p>{{prediction.user_email}}</p>
     <p>Agree: {{prediction.upvotes}} <a href="" ng-click="incrementUpVote(prediction.id, prediction.upvotes); prediction.upvotes = prediction.upvotes + 1">&#9650;</a> | Disagree: {{prediction.downvotes}} <a href="" ng-click="incrementDownVote(prediction.id, prediction.downvotes); prediction.downvotes = prediction.downvotes + 1">&#9660;</a></p>
     <p ng-show="checkOwner(prediction)"><a href="" ng-click="deletePrediction(prediction)">DELETE</a></p>
+    <p><a href="" ng-click="comment_tab = 1">VIEW COMMENTS</a></p>
+    <div class="comment-list" ng-show="comment_tab === 1">
+      SHOWING COMMENTS
+    </div>
   </div>
 </div>
 
@@ -60,6 +67,10 @@
     <p>{{prediction.user_email}}</p>
     <p>Agree: {{prediction.upvotes}} <a href="" ng-click="incrementUpVote(prediction.id, prediction.upvotes); prediction.upvotes = prediction.upvotes + 1">&#9650;</a> | Disagree: {{prediction.downvotes}} <a href="" ng-click="incrementDownVote(prediction.id, prediction.downvotes); prediction.downvotes = prediction.downvotes + 1">&#9660;</a></p>
     <p><a href="" ng-click="deletePrediction(prediction)">DELETE</a></p>
+    <p><a href="" ng-click="comment_tab = 1">VIEW COMMENTS</a></p>
+    <div class="comment-list" ng-show="comment_tab === 1">
+      SHOWING COMMENTS
+    </div>
   </div>
 </div>
 
