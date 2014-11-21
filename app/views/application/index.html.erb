@@ -17,60 +17,55 @@
 
 <div class="prediction-list" ng-show="tab === 1">
 
-  <div class="prediction" ng-show"prediction.body">
+<!--   <div class="prediction" ng-show"prediction.body">
     <blockquote>
       <h3>{{prediction.body}}</h3>
     </blockquote>
-  </div>
-
+  </div> -->
+  <h1>Popular Predictions</h1>
   <div class="prediction" ng-repeat="prediction in predictions | orderBy: '-upvotes'">
     <h3>{{prediction.body}}</h3>
     <p>{{prediction.user_email}}</p>
     <p>Agree: {{prediction.upvotes}} <a href="" ng-click="incrementUpVote(prediction.id, prediction.upvotes); prediction.upvotes = prediction.upvotes + 1">&#9650;</a> | Disagree: {{prediction.downvotes}} <a href="" ng-click="incrementDownVote(prediction.id, prediction.downvotes); prediction.downvotes = prediction.downvotes + 1">&#9660;</a></p>
     <p ng-show="checkOwner(prediction)"><a href="" ng-click="deletePrediction(prediction)">DELETE</a></p>
-    <p><a href="" ng-click="comment_tab = 1">VIEW COMMENTS</a></p>
-    <div class="comment-list" ng-show="comment_tab === 1">
-    </div>
+    <p><a href="https://twitter.com/intent/tweet?button_hashtag=postradamus&text='{{prediction.body}}'" class="twitter-hashtag-button">Tweet #postradamus</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></p>
   </div>
 
 </div>
 
 <div class="prediction-list" ng-show="tab === 2">
-    <div class="prediction" ng-show"prediction.body">
+<!--     <div class="prediction" ng-show"prediction.body">
     <blockquote>
       <h3>{{prediction.body}}</h3>
     </blockquote>
-  </div>
-
+  </div> -->
+  <h1>Recent Predictions</h1>
   <div class="prediction" ng-repeat="prediction in predictions | orderBy: '-created_at' | limitTo: 10">
     <h3>{{prediction.body}}</h3>
     <p>{{prediction.user_email}}</p>
     <p>Agree: {{prediction.upvotes}} <a href="" ng-click="incrementUpVote(prediction.id, prediction.upvotes); prediction.upvotes = prediction.upvotes + 1">&#9650;</a> | Disagree: {{prediction.downvotes}} <a href="" ng-click="incrementDownVote(prediction.id, prediction.downvotes); prediction.downvotes = prediction.downvotes + 1">&#9660;</a></p>
     <p ng-show="checkOwner(prediction)"><a href="" ng-click="deletePrediction(prediction)">DELETE</a></p>
-    <p><a href="" ng-click="comment_tab = 1">VIEW COMMENTS</a></p>
-    <div class="comment-list" ng-show="comment_tab === 1">
-      SHOWING COMMENTS
-    </div>
+    <p><a href="https://twitter.com/intent/tweet?button_hashtag=postradamus&text='{{prediction.body}}'" class="twitter-hashtag-button">Tweet #postradamus</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></p>
   </div>
 </div>
 
 <div class="prediction-list" ng-show="tab === 3">
 
-    <div class="prediction" ng-show"prediction.body">
+<!--     <div class="prediction" ng-show"prediction.body">
     <blockquote>
       <h3>{{prediction.body}}</h3>
     </blockquote>
-  </div>
-
+  </div> -->
+  <h1>My Predictions</h1>
   <div class="prediction" ng-repeat="prediction in predictions | orderBy: '-created_at'" ng-show="checkOwner(prediction)">
     <h3>{{prediction.body}}</h3>
     <p>{{prediction.user_email}}</p>
     <p>Agree: {{prediction.upvotes}} <a href="" ng-click="incrementUpVote(prediction.id, prediction.upvotes); prediction.upvotes = prediction.upvotes + 1">&#9650;</a> | Disagree: {{prediction.downvotes}} <a href="" ng-click="incrementDownVote(prediction.id, prediction.downvotes); prediction.downvotes = prediction.downvotes + 1">&#9660;</a></p>
     <p><a href="" ng-click="deletePrediction(prediction)">DELETE</a></p>
-    <p><a href="" ng-click="comment_tab = 1">VIEW COMMENTS</a></p>
-    <div class="comment-list" ng-show="comment_tab === 1">
-      SHOWING COMMENTS
-    </div>
+    <p><a href="https://twitter.com/intent/tweet?button_hashtag=postradamus&text='{{prediction.body}}'" class="twitter-hashtag-button">Tweet #postradamus</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></p>
   </div>
 </div>
 

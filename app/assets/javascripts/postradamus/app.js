@@ -1,6 +1,6 @@
 (function(){
 
-  var app = angular.module('app', ['templates', 'predictionsApp']);
+  var app = angular.module('app', ['templates', 'predictionsApp', 'ngAnimate']);
 
   app.config([
     '$httpProvider', function($httpProvider) {
